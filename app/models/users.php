@@ -13,6 +13,27 @@ class Users extends Model {
         ];
     }
 
+    function checkLogin($_email,$_password){
+    
+    	$username = $_email;
+    	$password = sha1($_password);
+  
+          //user
+	    $sql = "SELECT username,password FROM administrators WHERE username = :username and password = :password";
+        $stmt = $this->db->prepare($sql);
+         //Bind value.
+        $stmt->bindValue(':username',$username);
+        $stmt->bindValue(':password',$password);
+         //Execute.
+        $stmt->execute();
+        //Fetch row.
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        return $user;
+    }
+
+   
+
 }
 
 ?>
