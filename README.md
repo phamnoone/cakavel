@@ -1,4 +1,3 @@
-# cakavel
 ```
 ├── app
 ├── config                    # Configuration directory

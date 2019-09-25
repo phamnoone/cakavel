@@ -7,5 +7,5 @@
         <title>Example page</title>
         <link rel="stylesheet" href="/public/stylesheets/app.css">
     </head>
-    <body>
+ <body>
 
