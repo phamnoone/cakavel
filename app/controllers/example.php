@@ -25,7 +25,6 @@ class Example extends Controller {
       $this->view('template/footer');
     }
 
-
     function mutilparameter ($parameter1 = '', $parameter2 = '') {
        var_dump($parameter1);
        echo "<br>";
@@ -34,17 +33,12 @@ class Example extends Controller {
 
     function test_model(){
         $this->model('Users');
-
         $data = $this->Users->create();
-
         $this->view('template/header');
         $this->view('dashboard/test_model', $data);
         $this->view('template/footer');
 
     }
-
-  
-
 }
 
 ?>

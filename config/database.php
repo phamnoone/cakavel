@@ -6,4 +6,5 @@ $this->config['database'] = array(
     'password' => '',
     'dbname' => 'csetlu'
 );
+
 ?>

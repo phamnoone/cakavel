@@ -12,10 +12,6 @@ class AdministratorsModel extends Model {
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
         return $user;
     }
-
 }
 
-
-
-
- ?>
+?>

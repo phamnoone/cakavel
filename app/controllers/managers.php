@@ -1,5 +1,4 @@
 <?php 
-
 class Managers extends Controller{
     /*
      * http://localhost/
@@ -10,35 +9,30 @@ class Managers extends Controller{
         $this->view('template/footer');
     }
 
-	function login () {
-      $title= array(
-        "mess" => ""
-      );
+  	function login () {
+      $message = '';
       $mang = $this->data;
       if (count($mang) == 0 ){
 
-      } else {
+      }else {
           if ($this->method === 'POST') {
                 $this->model('AdministratorsModel');
                 $user = $this->AdministratorsModel->checkLogin($mang['username'],$mang['password']);
                 if ($user) {
-      
-                } else {
-                      $title['mess'] = "Đăng nhập không thành công !";
+
+                }else {
+                     $message = "Đăng nhập không thành công !";
                 }
-            
-          } else {
+          }else {
             
           }
       }
-        $this->view('template/login/footer');
-        $this->view('main/login',$title);
-        $this->view('template/login/header');
+      $this->view('template/login/footer');
+      $this->view('main/login',[
+          'message' => $message
+      ]);
+      $this->view('template/login/header');
     }
-
 }
 
-
-
-
- ?>
+?>
