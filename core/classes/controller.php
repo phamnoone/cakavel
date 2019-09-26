@@ -42,7 +42,6 @@ abstract class Controller {
         for ($i = $param; $i < $this->args; $i++) {
             $this->params[$i] = $this->route[$i];
         }
-
         if ($method == 0)
             call_user_func_array(array($this, 'index'), $this->params);
         else

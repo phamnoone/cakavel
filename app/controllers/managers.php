@@ -4,29 +4,20 @@ class Managers extends Controller{
      * http://localhost/
      */
     function index () {
-        $this->view('template/header');
-        $this->view('main/index');
-        $this->view('template/footer');
     }
 
   	function login () {
       $message = '';
-      $mang = $this->data;
-      if (count($mang) == 0 ){
+        if ($this->method === 'POST') {
+            $mang = $this->data;
+            $this->model('AdministratorsModel');
+            $bool = $this->AdministratorsModel->checkLogin($mang['username'],$mang['password']);
+            if ($bool) {
 
-      }else {
-          if ($this->method === 'POST') {
-                $this->model('AdministratorsModel');
-                $user = $this->AdministratorsModel->checkLogin($mang['username'],$mang['password']);
-                if ($user) {
-
-                }else {
-                     $message = "Đăng nhập không thành công !";
-                }
-          }else {
-            
-          }
-      }
+            }else {
+                $message = "Đăng nhập không thành công !";
+            }
+        }
       $this->view('template/login/footer');
       $this->view('main/login',[
           'message' => $message
