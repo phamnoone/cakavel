@@ -30,21 +30,9 @@ abstract class Controller {
             if ($this->args >= 3) {
                 if (method_exists($this, $this->route[2])) {
                     $this->uriCaller(2, 3);
-                } else {
-                    $this->uriCaller(0, 2);
                 }
             } else {
                 $this->uriCaller(0, 2);
-            }
-        } else {
-            if ($this->args >= 2) {
-                if (method_exists($this, $this->route[1])) {
-                    $this->uriCaller(1, 2);
-                } else {
-                    $this->uriCaller(0, 1);
-                }
-            } else {
-                $this->uriCaller(0, 1);
             }
         }
     }
