@@ -20,8 +20,8 @@ class Managers extends Controller{
       } else {
     
         if ($this->method === 'POST') {
-          $this->model('Users');
-          $user = $this->Users->checkLogin($mang['username'],$mang['password']);
+          $this->model('AdminsModel');
+          $user = $this->AdminsModel->checkLogin($mang['username'],$mang['password']);
           if ($user) {
       
           } else {

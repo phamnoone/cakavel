@@ -33,9 +33,9 @@ class Example extends Controller {
     }
 
     function test_model(){
-        $this->model('Users');
+        $this->model('AdminsModel');
 
-        $data = $this->Users->create();
+        $data = $this->AdminsModel->create();
 
         $this->view('template/header');
         $this->view('dashboard/test_model', $data);
