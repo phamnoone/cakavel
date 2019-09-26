@@ -8,7 +8,6 @@
 					<span class="login100-form-title p-b-34 p-t-27">
 						Wellcome TLU
 					</span>
-
 					<div class="wrap-input100 validate-input" data-validate = "Enter username">
 						<input class="input100" type="text" name="username" required placeholder="Username">
 					

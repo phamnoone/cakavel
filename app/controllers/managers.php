@@ -9,13 +9,13 @@ class Managers extends Controller{
   	function login () {
       $message = '';
         if ($this->method === 'POST') {
-            $mang = $this->data;
+            $userAdmin = $this->data;
             $this->model('AdministratorsModel');
-            $bool = $this->AdministratorsModel->checkLogin($mang['username'],$mang['password']);
+            $bool = $this->AdministratorsModel->checkLogin($userAdmin['username'],$userAdmin['password']);
             if ($bool) {
 
             }else {
-                $message = "Đăng nhập không thành công !";
+              $message = "Đăng nhập không thành công !";
             }
         }
       $this->view('template/login/footer');
