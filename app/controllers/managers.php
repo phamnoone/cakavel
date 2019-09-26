@@ -11,8 +11,7 @@ class Managers extends Controller{
         if ($this->method === 'POST') {
             $userAdmin = $this->data;
             $this->model('AdministratorsModel');
-            $bool = $this->AdministratorsModel->checkLogin($userAdmin['username'],$userAdmin['password']);
-            if ($bool) {
+            if ($this->AdministratorsModel->checkLogin($userAdmin['username'],$userAdmin['password'])) {
 
             }else {
               $message = "Đăng nhập không thành công !";
