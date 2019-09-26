@@ -5,7 +5,6 @@
 					<span class="login100-form-logo">
 						<img src="/public/images/logo.png"  width="120%">
 					</span>
-
 					<span class="login100-form-title p-b-34 p-t-27">
 						Wellcome TLU
 					</span>
@@ -27,20 +26,15 @@
 						</label>
 					</div>
 					<span class="login100-form-title mt-2 mb-4" style="font-size: 20px;">
-						<?php echo $mess; ?>
+						<?php echo $message; ?>
 					</span>
 					<div class="container-login100-form-btn">
 						<button class="login100-form-btn">
 							Login
 						</button>
-					</div>
-					
-
-					
+					</div>	
 				</form>
 			</div>
 		</div>
 	</div>
-	
-
 	<div id="dropDownSelect1"></div>
