@@ -26,20 +26,15 @@
 							Remember me
 						</label>
 					</div>
+					<span class="login100-form-title mt-2 mb-4" style="font-size: 20px;">
+						<?php echo $mess; ?>
+					</span>
 					<div class="container-login100-form-btn">
 						<button class="login100-form-btn">
 							Login
 						</button>
 					</div>
-					<span class="login100-form-title mt-4" style="font-size: 20px;">
-						<?php echo $mess; ?>
-					</span>
-
-					<div class="text-center p-t-90">
-						<a class="txt1" href="#">
-							Forgot Password?
-						</a>
-					</div>
+					
 
 					
 				</form>
