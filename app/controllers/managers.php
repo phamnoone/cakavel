@@ -14,7 +14,7 @@ class Managers extends Controller{
             if ($this->AdministratorsModel->checkLogin($userAdmin['username'],$userAdmin['password'])) {
 
             }else {
-              $message = "Đăng nhập không thành công !";
+                $message = "Đăng nhập không thành công !";
             }
         }
       $this->view('template/login/footer');
