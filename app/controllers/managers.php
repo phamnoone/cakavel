@@ -18,19 +18,18 @@ class Managers extends Controller{
       if (count($mang) == 0 ){
 
       } else {
-    
-        if ($this->method === 'POST') {
-          $this->model('AdministratorsModel');
-          $user = $this->AdministratorsModel->checkLogin($mang['username'],$mang['password']);
-          if ($user) {
+          if ($this->method === 'POST') {
+                $this->model('AdministratorsModel');
+                $user = $this->AdministratorsModel->checkLogin($mang['username'],$mang['password']);
+                if ($user) {
       
+                } else {
+                      $title['mess'] = "Đăng nhập không thành công !";
+                }
+            
           } else {
-            $title['mess'] = "Đăng nhập không thành công !";
+            
           }
-            
-        } else {
-            
-        }
       }
         $this->view('template/login/footer');
         $this->view('main/login',$title);
