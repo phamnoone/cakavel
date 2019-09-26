@@ -20,7 +20,6 @@ class Example extends Controller {
       // if ($parameter === '') {
       //     $this->view('errors/404');
       // }
-
       $this->view('template/header');
       $this->view('dashboard/subpage', $viewData);
       $this->view('template/footer');
@@ -34,9 +33,9 @@ class Example extends Controller {
     }
 
     function test_model(){
-        $this->model('Users');
+        $this->model('adminators');
 
-        $data = $this->Users->create();
+        $data = $this->adminators->create();
 
         $this->view('template/header');
         $this->view('dashboard/test_model', $data);
@@ -45,6 +44,7 @@ class Example extends Controller {
     }
 
     function login(){
+
       $title= array(
         "mess" =>""
       );
@@ -54,11 +54,10 @@ class Example extends Controller {
       } else {
     
         if ($this->method === 'POST') {
-          $this->model('Users');
-          $user = $this->Users->adminators($mang['username'],$mang['password']);
-          // login thanh cong
+          $this->model('adminators');
+          $user = $this->adminators->checkLogin($mang['username'],$mang['password']);
           if ($user) {
-            echo "<script>alert('Login thanh cong')</script>";
+      
           }else{
             $title['mess'] = "Đăng nhập không thành công !";
           }
