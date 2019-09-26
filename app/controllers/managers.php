@@ -1,6 +1,6 @@
 <?php 
 
-class Adminators extends Controller{
+class Managers extends Controller{
     /*
      * http://localhost/
      */
@@ -8,12 +8,11 @@ class Adminators extends Controller{
         $this->view('template/header');
         $this->view('main/index');
         $this->view('template/footer');
-
     }
 
 	function login () {
       $title= array(
-        "mess" =>""
+        "mess" => ""
       );
       $mang = $this->data;
       if (count($mang) == 0 ){
