@@ -17,6 +17,29 @@ class AdministratorsModel extends Model {
         }
        
     }
+
+    function insertToken($_token, $_username) {
+        $sql = "UPDATE administrators SET `token` = :token WHERE `administrators`.`username` = :username";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':token',$_token);
+        $stmt->bindValue(':username',$_username);
+        $stmt->execute();
+    }
+
+    function checkToken($_token){
+        $token = sha1($_token);
+        $sql = "SELECT * FROM administrators WHERE `administrators`.`token` = :token";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':token',$token);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($result) {
+                return true;
+        } else {
+                return false;
+        }
+
+    }
 }
 
 ?>
