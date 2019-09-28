@@ -26,6 +26,8 @@ abstract class Controller {
 
 
     private function router() {
+        $this->beforeRender();
+
         if (class_exists($this->route[1])) {
             if ($this->args >= 3) {
                 if (method_exists($this, $this->route[2])) {
@@ -35,6 +37,8 @@ abstract class Controller {
                 $this->uriCaller(0, 2);
             }
         }
+
+        $this->afterRender();
     }
 
 
@@ -48,15 +52,18 @@ abstract class Controller {
             call_user_func_array(array($this, $this->route[$method]), $this->params);
     }
 
+    function beforeRender();
 
-    abstract function index();
+    function index();
+
+    function afterRender();
 
 
     function model($path) {
         $path = $path;
         $class = explode('/', $path);
         $class = $class[count($class)-1];
-        $path = strtolower($path);
+        // $path = strtolower($path);
         require(ROOT . '/app/models/' . $path . '.php');
         $this->$class = new $class;
     }
