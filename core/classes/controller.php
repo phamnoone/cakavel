@@ -52,11 +52,17 @@ abstract class Controller {
             call_user_func_array(array($this, $this->route[$method]), $this->params);
     }
 
-    function beforeRender();
+    function beforeRender(){
 
-    function index();
+    }
 
-    function afterRender();
+    function index(){
+
+    }
+
+    function afterRender(){
+      
+    }
 
 
     function model($path) {
