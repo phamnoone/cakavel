@@ -4,7 +4,7 @@ class Dashboard extends Controller{
      * http://localhost/
      */
   	function admin () {
-      if (isset($_SESSION['token_admin']) ) {
+      if ($this->beforeRender()) {
           $this->view('template/managers/header');
           $this->view('main/managers');
           $this->view('template/managers/footer');
