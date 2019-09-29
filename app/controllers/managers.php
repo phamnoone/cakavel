@@ -11,7 +11,7 @@ class Managers extends Controller{
             if ($this->AdministratorsModel->checkLogin($userAdmin['username'], $userAdmin['password'])) {
                 session_start();
                 $tokenAdmin = sha1(''.$userAdmin['username'].$userAdmin['password'].time());
-                $_SESSION['tokenAdmin'] = $tokenAdmin;
+                $_SESSION['token_admin'] = $tokenAdmin;
                 header("Location: /dashboard/admin");
             } else {
                 $message = "Đăng nhập không thành công !";
