@@ -4,9 +4,8 @@ class Zmanagers extends Authentication{
   /*
   * http://localhost/
   */
-  function __construct(){
-    $this->tokenKey = "token_admin";
-  }
+  public $tokenKey = 'token_admin';
+  public $redirectURL = 'managers/login';
 }
 
 ?>
