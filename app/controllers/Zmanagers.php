@@ -1,6 +1,6 @@
 <?php 
 require 'Authentication.php';
-class Zmanagers extends Controller{
+class Zmanagers extends Authentication{
   /*
   * http://localhost/
   */

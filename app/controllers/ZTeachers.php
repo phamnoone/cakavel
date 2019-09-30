@@ -1,6 +1,6 @@
 <?php 
 require 'Authentication.php';
-class ZTeachers extends Controller{
+class ZTeachers extends Authentication{
   /*
   * http://localhost/
   */
