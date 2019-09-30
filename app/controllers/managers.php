@@ -12,7 +12,6 @@ class Managers extends Controller{
                 session_start();
                 $tokenAdmin = sha1(''.$userAdmin['username'].$userAdmin['password'].time());
                 $_SESSION['token_admin'] = $tokenAdmin;
-                $_SESSION['permission'] = 0;
                 header("Location: /dashboard/admin");
             } else {
                 $message = "Đăng nhập không thành công !";

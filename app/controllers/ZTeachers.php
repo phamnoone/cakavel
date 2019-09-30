@@ -1,9 +1,9 @@
 <?php 
 require 'Authentication.php';
-class Zmanagers extends Controller{
+class ZTeachers extends Controller{
   /*
   * http://localhost/
   */
-  $this->tokenKey = 'token_admin';
+  $this->tokenKey = 'token_teacher';
 }
 ?>
