@@ -15,11 +15,11 @@ class Managers extends Controller{
                 $message = "Đăng nhập không thành công !";
             }
         }
-      $this->view('template/login/footer');
+      $this->view('template/login/header');
       $this->view('main/login',[
           'message' => $message
       ]);
-      $this->view('template/login/header');
+      $this->view('template/login/footer');
     }
 }
 
