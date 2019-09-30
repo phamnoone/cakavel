@@ -4,7 +4,7 @@ class Authentication extends Controller {
   public $redirectURL = '';
   
   function beforeRender(){
-  	if($this->checkPermisson()){
+  	if($this->checkPermisson() == false){
 
   	} else {
   	  		header('Location: /'.$this->redirectURL);
