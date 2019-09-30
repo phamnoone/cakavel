@@ -9,7 +9,7 @@
               <h1>WelCome TLU</h1>
             </div>
           </div>
-          <img src="../public/images/logo.png" width="50%" >
+          <img src="../public/images/logo.png" class="imglogo" >
         </div>
         <section class="login_content">
           <form method="POST">
