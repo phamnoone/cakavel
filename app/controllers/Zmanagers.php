@@ -8,27 +8,21 @@ class Zmanagers extends Controller{
         switch ($_SESSION['permission']) {
           case 0:
             if(isset($_SESSION['token_admin'])){
-                $this->view('template/managers/header');
-                $this->view('main/managers');
-                $this->view('template/managers/footer');
+             
             } else {
                   header("Location: /managers/login");
             }
           break;
           case 1:
             if(isset($_SESSION['token_teacher'])){
-                $this->view('template/teachers/header');
-                $this->view('main/teachers');
-                $this->view('template/teachers/footer');
+
             } else {
                   header("Location: /teachers/login");
             }
           break;
           case 2:
             if(isset($_SESSION['token_student'])){
-                $this->view('template/students/header');
-                $this->view('main/students');
-                $this->view('template/students/footer');
+
             } else {
                   header("Location: /students/login");
             }
