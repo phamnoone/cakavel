@@ -1,8 +1,6 @@
 <?php
 class Managers extends Controller{
-    /*
-     * http://localhost/
-     */
+
   	function login () {
       $message = '';
         if ($this->method === 'POST') {

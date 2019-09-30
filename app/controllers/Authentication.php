@@ -1,19 +1,17 @@
 <?php
 class Authentication extends Controller {
-  public $tokenKey = '';
-  public $redirectURL = '';
+    public $tokenKey = '';
+    public $redirectURL = '';
   
-  function beforeRender(){
-  	if($this->checkPermisson() == false){
-
-  	} else {
+  	function beforeRender(){
+  		if($this->checkPermisson()){
   	  		header('Location: /'.$this->redirectURL);
-  	}
-  }
+ 	 	}
+	}
 
-  private function checkPermisson(){
-    return empty($_SESSION[$this->tokenKey]);
-  }
+  	private function checkPermisson(){
+    	return empty($_SESSION[$this->tokenKey]);
+  	}
 
 }
 
