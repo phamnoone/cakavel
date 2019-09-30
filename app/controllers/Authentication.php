@@ -4,13 +4,13 @@ class Authentication extends Controller {
     public $redirectURL = '';
   
   	function beforeRender(){
-  		if($this->checkPermisson()){
-  	  		header('Location: /'.$this->redirectURL);
- 	 	}
+  	  if($this->checkPermisson()){
+  	      header('Location: /'.$this->redirectURL);
+ 	  }
 	}
 
   	private function checkPermisson(){
-    	return empty($_SESSION[$this->tokenKey]);
+          return empty($_SESSION[$this->tokenKey]);
   	}
 
 }
