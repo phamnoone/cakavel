@@ -1,19 +1,17 @@
-<?php 
+<?php
 class Managers extends Controller{
-    /*
-     * http://localhost/
-     */
-    function index () {
-    }
 
   	function login () {
       $message = '';
         if ($this->method === 'POST') {
             $userAdmin = $this->data;
             $this->model('AdministratorsModel');
-            if ($this->AdministratorsModel->checkLogin($userAdmin['username'],$userAdmin['password'])) {
-
-            }else {
+            if ($this->AdministratorsModel->checkLogin($userAdmin['username'], $userAdmin['password'])) {
+                session_start();
+                $tokenAdmin = sha1(''.$userAdmin['username'].$userAdmin['password'].time());
+                $_SESSION['token_admin'] = $tokenAdmin;
+                header("Location: /dashboard/admin");
+            } else {
                 $message = "Đăng nhập không thành công !";
             }
         }
