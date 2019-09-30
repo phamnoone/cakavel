@@ -1,13 +1,13 @@
 <?php
 class Authentication extends Controller {
-  $tokenKey;
-
+  public $tokenKey;
+  
   function beforeRender(){
 
   }
 
-  function checkPermisson(){
-  	if ($_SESSION("$this->tokenKey")){
+  private function checkPermisson(){
+  	if (isset($_SESSION["$this->tokenKey"])){
   	    return true;
   	}
   	return flase;

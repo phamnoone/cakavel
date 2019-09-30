@@ -4,6 +4,9 @@ class Zmanagers extends Authentication{
   /*
   * http://localhost/
   */
-  $this->tokenKey = 'token_admin';
+  function __construct(){
+    $this->tokenKey = "token_admin";
+  }
 }
+
 ?>
