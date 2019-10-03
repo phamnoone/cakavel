@@ -4,13 +4,16 @@ class Authenticationlogin extends Controller {
     public $redirectURL = '';
   
   	function beforeRender(){
-  	  if($this->checkCookies() == false){
+  	  if($this->checkCookies()){
   	      header('Location: /'.$this->redirectURL);
  	  }
 	}
 
   	private function checkCookies(){
-          return empty($_COOKIE[$this->tokenKey]);
+  	  if(empty($_COOKIE[$this->tokenKey]) == false){
+  	      $this->model('AdministratorsModel');
+          return $this->AdministratorsModel->checkToken($_COOKIE[$this->tokenKey]);
+  	  }
   	}
 }
 
