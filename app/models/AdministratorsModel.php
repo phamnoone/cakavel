@@ -1,8 +1,7 @@
 <?php 
 class AdministratorsModel extends Model {
 
-	 function checkLogin($username, $password) { 
-        $password = sha1($password);
+     function checkLogin($username, $password) {
         $sql = "SELECT username,password FROM administrators WHERE username = :username and password = :password";
         $stmt = $this->db->prepare($sql);
         $stmt->bindValue(':username',$username);

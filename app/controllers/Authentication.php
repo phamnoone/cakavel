@@ -12,7 +12,6 @@ class Authentication extends Controller {
   	private function checkPermisson(){
           return empty($_SESSION[$this->tokenKey]);
   	}
-
 }
 
 ?>
