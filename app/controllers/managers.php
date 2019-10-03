@@ -1,5 +1,7 @@
 <?php
-class Managers extends Controller{
+require 'Zmanagerslogin.php';
+
+class Managers extends Zmanagerslogin{
     const COST_TIME = 3600;
 
   	function login () {
@@ -12,8 +14,9 @@ class Managers extends Controller{
                 session_start();
                 $tokenAdmin = sha1(''.$userAdmin['username'].$userAdmin['password'].time());
                 $_SESSION['token_admin'] = $tokenAdmin;
-                setcookie('username',$userAdmin['username'],time()+self::COST_TIME);
-                setcookie('password',$userAdmin['password'],time()+self::COST_TIME);
+                if (isset($_POST['checklogin'])) {
+                    setcookie('token_admin',$tokenAdmin,time()+self::COST_TIME);
+                }
                 header("Location: /dashboard/admin");
             } else {
                 $message = "Đăng nhập không thành công !";
