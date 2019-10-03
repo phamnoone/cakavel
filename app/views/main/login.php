@@ -15,10 +15,14 @@
           <form method="POST">
             <h1>Login Form</h1>
             <div>
-              <input type="text" class="form-control" placeholder="username" name="username" required >
+              <input type="text" class="form-control" placeholder="username" value="<?php if(empty($_COOKIE['username']) == false) echo $_COOKIE['username']; ?>" name="username" required >
             </div>
             <div>
-              <input type="password" class="form-control" placeholder="password" name="password" required >
+              <input type="password" class="form-control" placeholder="password" name="password" value="<?php if(empty($_COOKIE['password']) == false) echo $_COOKIE['password']; ?>" required >
+            </div>
+            <div class="form-check" style="text-align: initial; margin-bottom: 15px;">
+              <input type="checkbox" class="form-check-input" <?php if(empty($_COOKIE['username']) == false) echo "checked"; ?>>
+              <label class="form-check-label" for="exampleCheck1"> Remember me</label>
             </div>
             <div>
              <button class="btn btn-light submit" style=" background: #fff;text-decoration: none;border: solid 1px #ccc;">Log in</button>
