@@ -1,7 +1,7 @@
 <?php
-require 'Zmanagerslogin.php';
+require 'Zmanagers.php';
 
-class Managers extends Zmanagerslogin{
+class Managers extends Zmanagers{
     const COST_TIME = 3600;
 
   	function login () {
@@ -11,7 +11,6 @@ class Managers extends Zmanagerslogin{
             $this->model('AdministratorsModel');
             $password = sha1($userAdmin['password']);
             if ($this->AdministratorsModel->checkLogin($userAdmin['username'], $password)) {
-                session_start();
                 $tokenAdmin = sha1(''.$userAdmin['username'].$userAdmin['password'].time());
                 $_SESSION['token_admin'] = $tokenAdmin;
                 if (isset($_POST['checklogin'])) {
