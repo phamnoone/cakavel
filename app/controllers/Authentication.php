@@ -3,24 +3,21 @@ class Authentication extends Controller {
     public $tokenKey = '';
     public $redirectURL = '';
 
-  	function beforeRender() {
-  	  if ($this->checkPermisson() == false) {
-
-   	  } else {
-   	  	    if (empty($_COOKIE[$this->tokenKey])) {
-                $this->checkURL($this->getCurURL(), $this->redirectURL);
-   	  	    } else {
-    	      	      $this->model('AdministratorsModel');
-            	      if ($this->AdministratorsModel->checkToken($_COOKIE[$this->tokenKey])) {
-                        session_start();
-            	          $_SESSION[$this->tokenKey] = ''.time();
-
-            	      } else {
-                          $this->checkURL($this->getCurURL(), $this->redirectURL);
-                      }
-              }
-   	  	}
-   	}
+    function beforeRender() {
+      if ($this->checkSession()) {
+          if ($this->checkCookie()) {
+              $this->checkURL($this->getCurURL(), $this->redirectURL);
+          } else {
+                $this->model('AdministratorsModel');
+                if ($this->AdministratorsModel->checkToken($_COOKIE[$this->tokenKey])) {
+                    session_start();
+                    $_SESSION[$this->tokenKey] = ''.time();
+                } else {
+                      $this->checkURL($this->getCurURL(), $this->redirectURL);
+                  }
+            }
+      }
+    }
 
     private function checkURL($strparent, $strchild) {
       if(strpos(''.$strparent, ''.$strchild) == false){
@@ -28,9 +25,13 @@ class Authentication extends Controller {
       }
     }
 	
-  	private function checkPermisson(){
-          return empty($_SESSION[$this->tokenKey]);
+  	private function checkSession(){
+        return empty($_SESSION[$this->tokenKey]);
   	}
+
+    private function checkCookie(){
+        return empty($_COOKIE[$this->tokenKey]);
+    }
 
     function getCurURL() {
       if (isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] == "on") {
