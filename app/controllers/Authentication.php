@@ -6,22 +6,22 @@ class Authentication extends Controller {
     function beforeRender() {
       if ($this->checkSession()) {
           if ($this->checkCookie()) {
-              $this->checkURL($this->getCurURL(), $this->redirectURL);
+              $this->checkURL($this->redirectURL);
           } else {
                 $this->model('AdministratorsModel');
                 if ($this->AdministratorsModel->checkToken($_COOKIE[$this->tokenKey])) {
                     session_start();
                     $_SESSION[$this->tokenKey] = ''.time();
                 } else {
-                      $this->checkURL($this->getCurURL(), $this->redirectURL);
+                      $this->checkURL($this->redirectURL);
                   }
             }
       }
     }
 
-    private function checkURL($strparent, $strchild) {
-      if(strpos(''.$strparent, ''.$strchild) == false){
-          header('Location: /'.$strchild);
+    private function checkURL($str) {
+      if(!strpos(''.$this->getCurURL(), ''.$str)){
+          header('Location: /'.$str);
       }
     }
 	

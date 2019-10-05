@@ -2,7 +2,7 @@
 class AdministratorsModel extends Model {
 
      function checkLogin($username, $password) {
-        $sql = "SELECT username,password FROM administrators WHERE username = :username and password = :password";
+        $sql = "SELECT username FROM administrators WHERE username = :username and password = :password";
         $stmt = $this->db->prepare($sql);
         $stmt->bindValue(':username',$username);
         $stmt->bindValue(':password',$password);
@@ -25,7 +25,7 @@ class AdministratorsModel extends Model {
     }
 
     function checkToken($token){
-        $sql = "SELECT * FROM administrators WHERE `administrators`.`token` = :token";
+        $sql = "SELECT id FROM administrators WHERE `administrators`.`token` = :token";
         $stmt = $this->db->prepare($sql);
         $stmt->bindValue(':token',$token);
         $stmt->execute();
