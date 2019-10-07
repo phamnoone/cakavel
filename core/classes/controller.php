@@ -63,7 +63,7 @@ abstract class Controller {
     }
 
     function afterRender(){
-      
+
     }
 
 
@@ -72,7 +72,7 @@ abstract class Controller {
         $class = explode('/', $path);
         $class = $class[count($class)-1];
         // $path = strtolower($path);
-        require(ROOT . '/app/models/' . $path . '.php');
+        require_once(ROOT . '/app/models/' . $path . '.php');
         $this->$class = new $class;
     }
 
@@ -80,7 +80,7 @@ abstract class Controller {
     function view ($path, $data = []) {
         if (is_array($data))
             extract($data);
-        require(ROOT . '/app/views/' . $path . '.php');
+        require_once(ROOT . '/app/views/' . $path . '.php');
     }
 
 }
