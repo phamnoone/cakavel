@@ -16,7 +16,7 @@ class Authentication extends Controller {
                       $this->checkURL($this->redirectURL);
                   }
             }
-      } 
+      }
     }
 
     private function checkURL($str) {

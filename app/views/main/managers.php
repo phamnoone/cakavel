@@ -1,129 +1,12 @@
  <div class="container body">
   <div class="main_container">
     <div class="col-md-3 left_col">
-      <div class="left_col scroll-view">
-        <div class="navbar nav_title" style="border: 0;">
-          <a href="" class="site_title"><i class="fa fa-paw"></i> <span>WELCOME TLU !</span></a>
-        </div>
-        <div class="clearfix"></div>
-        <!-- menu profile quick info -->
-        <div class="profile clearfix">
-          <div class="profile_pic">
-            <img src="/public/images/img.jpg" alt="..." class="img-circle profile_img">
-          </div>
-          <div class="profile_info">
-            <span>Welcome,</span>
-            <h2>Admin</h2>
-          </div>
-        </div>
-        <!-- /menu profile quick info -->
-        <br />
-        <!-- sidebar menu -->
-        <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-          <div class="menu_section">
-            <h3>DashBoard</h3>
-            <ul class="nav side-menu">
-              <li><a href=""><i class="fa fa-home"></i> Home </a></li>
-              <li><a><i class="fa fa-edit"></i> Quản lí giảng viên </a></li>
-              <li><a><i class="fa fa-desktop"></i> Quản lí sinh viên </a></li>
-              <li><a><i class="fa fa-table"></i> Quản lí môn học </a></li>
-              <li><a><i class="fa fa-bar-chart-o"></i> Quản lí lớp học </a></li>
-              <li><a><i class="fa fa-clone"></i> Quản lí danh mục bài viết </a></li>
-            </ul>
-          </div>
-        </div>
-        <!-- /menu footer buttons -->
-      </div>
+      <?php require_once "menu.php"; ?>
     </div>
     <!-- top navigation -->
     <div class="top_nav">
       <div class="nav_menu">
-        <nav>
-          <div class="nav toggle">
-            <a id="menu_toggle"><i class="fa fa-bars"></i></a>
-          </div>
-
-          <ul class="nav navbar-nav navbar-right">
-            <li class="">
-              <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                <img src="/public/images/img.jpg" alt="">Admin
-                <span class=" fa fa-angle-down"></span>
-              </a>
-
-              <ul class="dropdown-menu dropdown-usermenu pull-right">
-                <li><a href="admin"> Profile</a></li>
-                <li><a href="logout"><i class="fa fa-sign-out pull-right"></i>Log Out</a></li>
-              </ul>
-            </li>
-  
-
-
-            <li role="presentation" class="dropdown">
-              <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
-                <i class="fa fa-envelope-o"></i>
-                <span class="badge bg-green">6</span>
-              </a>
-              <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-                <li>
-                  <a>
-                    <span class="image"><img src="/public/images/img.jpg" alt="Profile Image" /></span>
-                    <span>
-                      <span>John Smith</span>
-                      <span class="time">3 mins ago</span>
-                    </span>
-                    <span class="message">
-                      Film festivals used to be do-or-die moments for movie makers. They were where...
-                    </span>
-                  </a>
-                </li>
-                <li>
-                  <a>
-                    <span class="image"><img src="/public/images/img.jpg" alt="Profile Image" /></span>
-                    <span>
-                      <span>John Smith</span>
-                      <span class="time">3 mins ago</span>
-                    </span>
-                    <span class="message">
-                      Film festivals used to be do-or-die moments for movie makers. They were where...
-                    </span>
-                  </a>
-                </li>
-                <li>
-                  <a>
-                    <span class="image"><img src="/public/images/img.jpg" alt="Profile Image" /></span>
-                    <span>
-                      <span>John Smith</span>
-                      <span class="time">3 mins ago</span>
-                    </span>
-                    <span class="message">
-                      Film festivals used to be do-or-die moments for movie makers. They were where...
-                    </span>
-                  </a>
-                </li>
-                <li>
-                  <a>
-                    <span class="image"><img src="/public/images/img.jpg" alt="Profile Image" /></span>
-                    <span>
-                      <span>John Smith</span>
-                      <span class="time">3 mins ago</span>
-                    </span>
-                    <span class="message">
-                      Film festivals used to be do-or-die moments for movie makers. They were where...
-                    </span>
-                  </a>
-                </li>
-                <li>
-                  <div class="text-center">
-                    <a>
-                      <strong>See All Alerts</strong>
-                      <i class="fa fa-angle-right"></i>
-                    </a>
-                  </div>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </nav>
+        <?php require_once "nav_menu.php"; ?>
       </div>
     </div>
     <!-- /top navigation -->
@@ -131,83 +14,121 @@
     <!-- page content -->
     <div class="right_col" role="main">
       <!-- top tiles -->
-      <center><h3>XIN CHÀO ADMIN</h3></center>
+      <center>
+        <h3>XIN CHÀO <?php echo strtoupper($admin); ?></h3></center>
 
-      <div id="content-wrapper">
+        <div id="content-wrapper">
 
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-12" style="display: flex;">  <h2>THÔNG TIN ADMIN</h2>
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-lg-6 col-md-6 col-sm-12" style="display: flex;">
+                <h2><?php echo strtoupper($admin); ?> Profile</h2>
+              </div>
             </div>
-            <div class="col-lg-6 col-md-6 col-sm-12" style="display: flex;">
-             <div class="form-group" style="margin-left: 22%;margin-right: 10px;">
-              <select class="form-control" name="category">
-                <option>ID</option>
-                <option>Name</option>
-              </select>
+            <hr>
+            <div class="row">
+              <div class="col-lg-3"></div>
+              <div class="col-lg-6 ">
+                <div class="container">
+                  <h2>Thông tin cá nhân</h2>
+                  <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" href="#menu2">Thông tin</a></li>
+                    <li class=""><a data-toggle="tab" href="#menu3">Đổi mật khẩu</a></li>
+                  </ul>
+                  <div class="row">
+                    <div class="col-lg-8">
+                      <div class="well">
+                        <div id="myTabContent" class="tab-content">
+
+                          <div id="menu2" class="tab-pane fade in active">
+                            <div class="tab-pane in" id="home">
+                              <form>
+                                <label>Tài khoản</label>
+                                <input style="margin:10px 0px 10px 20px;" required type="text" value="" class="input-xlarge">
+                                <br>
+                                <label>Tên</label>
+                                <input style="margin-left: 58px;margin-bottom: 10px;" required type="text" value="" class="input-xlarge">
+                                <br>
+                                <label>Mô tả</label>
+                                <br>
+                                <textarea rows="2" cols="50" style="margin-left: 43px;" ></textarea>
+                                <br>
+                                <label>Ảnh</label>
+                                <input type="file" name="" value="" >
+                                <button class="btn btn-primary" style="margin-top: 20px;">Cập nhật</button>
+                              </form>
+                            </div>
+                          </div>
+                          <div id="menu3" class="tab-pane fade">
+                            <form>
+                              <label>Mật khẩu cũ</label>
+                              <input  id="myInput" style="margin:10px 0px 10px 25px;" type="password" value="" required class="input-xlarge myInput">
+                              <br>
+                              <label>Mật khẩu mới</label>
+                              <input  id="myInput" style="margin:10px 0px 10px 16px;" type="password" value="" required class="input-xlarge myInput">
+                              <br>
+                              <label>Xác nhận lại</label>
+                              <input  id="myInput" style="margin:10px 0px 10px 24px;" type="password" value="" required class="input-xlarge myInput">
+                              <br>
+                              <div class="form-check" style="text-align: initial; margin-bottom: 15px;">
+                                <input type="checkbox" onclick="myFunction()" name="checkpass" >
+                                <label class="form-check-label" for="exampleCheck1">Hiển thị mật khẩu</label>
+                              </div>
+                              <br>
+                              <button class="btn btn-primary" style="margin-top: 10px;">Đổi mật khẩu</button>
+                            </form>
+                            <script>
+                              function myFunction() {
+                               var x = document.getElementsByClassName("myInput");
+                               for (i = 0; i < x.length; i++) {        
+
+                                if (x[i].type === "password") {
+                                  x[i].type = "text";
+                                } else {
+                                  x[i].type = "password";
+                                }
+                              }
+                            }
+                          </script>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="d-flex justify-content-center h-100">
+                      <div class="image_outer_container thung">
+                        <div class="image_inner_container">
+                          <img src="/public/images/img.jpg">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="col-lg-3"></div>
+
             </div>
-            <!-- Search form -->
-            <div class="active-cyan-3 active-cyan-2 mb-2">
-              <input class="form-control" type="text" placeholder="Search" aria-label="Search">
-            </div>
-            <a style="margin-left: 10px;height: 100%;"  href="" class="btn btn-info  btnadd">Tìm kiếm</a>
           </div>
         </div>
-        <!-- Single button -->
-        <hr>
-        <!-- Breadcrumbs-->
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item">
-            <a href="">Home</a>
-          </li>
-          <li class="breadcrumb-item"></li>
-        </ol>
-        <!-- Page Content -->
-        <hr>
-        <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
-          <thead>
-            <tr role="row">
-              <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 15px;">STT</th>
-              <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 30px;">Tiêu đề</th>
-              <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 118px;">Ảnh</th>
-              <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 54px;">Nội dung</th>
-              <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 100px;">Loại tin</th>
-              <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 92px;">Ngày</th>
-              <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 92px;">Hành Động</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr role="row" class="odd">
-              <td class="sorting_1">1</td>
-              <td>tieu de</td>
-              <td>anh</td>
-              <td>noi dung</td>
-              <td>loai tin</td>
-              <td>ngay</td>
-              <td style="display: flex;">
-                <a    type="button"  class="btn btn-xs btn-info btnsua" href=""  >Sửa</a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <ul class="pull-right pagination justify-content-end">
-          <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item"><a class="page-link" href="#">4 </a></li>
-          <li class="page-item"><a class="page-link" href="#">Next</a></li>
-        </ul>
       </div>
     </div>
+    <!-- /page content -->
+    <footer>
+      <div class="">
+        <center><h5>Dashboard Amin Manager Designed by Văn Phễn</h5></center>
+      </div>
+      <div class="clearfix"></div>
+    </footer>
   </div>
 </div>
-<!-- /page content -->
-<footer>
-  <div class="">
-    <center><h5>Dashboard Amin Manager Designed by Văn Phễn</h5></center>
-  </div>
-  <div class="clearfix"></div>
-</footer>
-</div>
+
+
+
+
+
+<div class="container">
+
+
+
 </div>

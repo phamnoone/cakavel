@@ -37,6 +37,15 @@ class AdministratorsModel extends Model {
         }
 
     }
+
+    function infor($username){
+        $sql = "SELECT password,name,image,note FROM administrators WHERE `administrators`.`username` = :username";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':username',$username);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        var_dump($result);
+    }
 }
 
 ?>
