@@ -74,7 +74,7 @@
               <td>ngay</td>
               <td style="display: flex;">
                 <a type="button"  class="btn btn-xs btn-info btnsua" href=""  >Sửa</a>
-                 <a type="button"  class="btn btn-xs btn-info btnsua" href=""  >Xóa</a>
+                <a type="button"  class="btn btn-xs btn-info btnsua" href=""  >Xóa</a>
               </td>
             </tr>
           </tbody>

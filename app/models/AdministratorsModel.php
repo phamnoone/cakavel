@@ -39,12 +39,36 @@ class AdministratorsModel extends Model {
     }
 
     function infor($username){
-        $sql = "SELECT password,name,image,note FROM administrators WHERE `administrators`.`username` = :username";
+        $sql = "SELECT name,image,note FROM administrators WHERE `administrators`.`username` = :username";
         $stmt = $this->db->prepare($sql);
         $stmt->bindValue(':username',$username);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        var_dump($result);
+        return $result;
+    }
+
+    function updatePass($password, $username) {
+        $sql = "UPDATE administrators SET `password` = :password WHERE `administrators`.`username` = :username";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':password',$password);
+        $stmt->bindValue(':username',$username);
+        if($stmt->execute()){
+            return true;
+        }
+        return false;
+    }
+
+    function updateInfor($name, $image, $note, $username) {
+        $sql = "UPDATE administrators SET `name` = :name,`image` = :image ,`note` = :note WHERE `administrators`.`username` = :username";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':name',$name);
+        $stmt->bindValue(':image',$image);
+        $stmt->bindValue(':note',$note);
+        $stmt->bindValue(':username',$username);
+        if($stmt->execute()){
+            return true;
+        }
+        return false;
     }
 }
 
