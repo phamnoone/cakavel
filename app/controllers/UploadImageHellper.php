@@ -7,7 +7,7 @@ class UploadImageHellper extends Controller {
       $this->namefile = $_namefile;
     }
     function upLoadFile(){
-          $str = substr( ''. $_FILES[''.$this->namefile]['name'],  strlen(''. $_FILES[''.$this->namefile]['name'])-4, strlen(''. $_FILES[''.$this->namefile]['name']));
+          $str = substr( ''. $_FILES[''.$this->namefile]['name'],  strlen(''. $_FILES[''.$this->namefile]['name'])-3, strlen(''. $_FILES[''.$this->namefile]['name']));
           if ($str == 'peg'){
               $str = 'jpeg';
           }
@@ -17,7 +17,7 @@ class UploadImageHellper extends Controller {
                   $this->messimg = 'UpLoad không thành công !';
               } else{
                     if (in_array($str,$allowtypes )) {   
-                        move_uploaded_file($_FILES[''.$this->namefile]['tmp_name'], '/public/images/'.$_FILES[''.$this->namefile]['name']);
+                        move_uploaded_file($_FILES[''.$this->namefile]['tmp_name'], './public/images/'.$_FILES[''.$this->namefile]['name']);
                     } else {
                           $this->messimg = 'Chỉ được upload các định dạng JPG, PNG, JPEG, GIF';
                       }

@@ -33,7 +33,6 @@
                   <h2>Thông tin cá nhân</h2>
                   <ul class="nav nav-tabs">
                     <li class="active"><a data-toggle="tab" href="#menu2">Thông tin</a></li>
-                    <li class=""><a data-toggle="tab" href="#menu3">Đổi mật khẩu</a></li>
                   </ul>
                   <div class="row">
                     <div class="col-lg-8">
@@ -56,42 +55,12 @@
                                 <label>Ảnh</label>
                                 <input type="file" onchange="showImage.call(this)" name="image" value="" >
                                 <h2 style="color: red;text-align: center;margin-top: 16px;"><?php echo $messageUpdate ?></h2>
-<!--                                 <button class="btn btn-primary submit" name="uploadclick"  style="margin-top: 20px;">Cập nhật</button> -->
                                 <input type="submit" class="btn btn-primary" style="margin-top: 20px;" name="uploadclick" value="CẬp nhật"/>
                               </form>
                             </div>
                           </div>
                           <div id="menu3" class="tab-pane fade">
-                            <form method="POST">
-                              <label>Mật khẩu cũ</label>
-                              <input  id="myInput" style="margin:10px 0px 10px 25px;" name="passold" type="password" value="" required class="input-xlarge myInput">
-                              <br>
-                              <label>Mật khẩu mới</label>
-                              <input  id="myInput" style="margin:10px 0px 10px 16px;" name="passnew" type="password" value="" required class="input-xlarge myInput">
-                              <br>
-                              <label>Xác nhận lại</label>
-                              <input  id="myInput" style="margin:10px 0px 10px 24px;" name="passconfirm" type="password" value="" required class="input-xlarge myInput">
-                              <br>
-                              <div class="form-check" style="text-align: initial; margin-bottom: 15px;">
-                                <input type="checkbox" onclick="myFunction()" name="checkpass" >
-                                <label class="form-check-label" for="exampleCheck1">Hiển thị mật khẩu</label>
-                              </div>
-                              <br>
-                              <h2 style="color: red;"><!-- Tài khoản mật khẩu không chính xác ! --></h2>
-                              <br>
-                              <button class="btn btn-primary submit" style="margin-top: 10px;">Đổi mật khẩu</button>
-                            </form>
                             <script>
-                              function myFunction() {
-                               var x = document.getElementsByClassName("myInput");
-                               for (i = 0; i < x.length; i++) {        
-                                if (x[i].type === "password") {
-                                  x[i].type = "text";
-                                } else {
-                                  x[i].type = "password";
-                                }
-                              }
-                            }
                             function showImage(){
 
                               if (this.files && this.files[0]){
