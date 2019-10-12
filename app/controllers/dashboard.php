@@ -16,6 +16,9 @@ class Dashboard extends Zmanagers{
         if ($profileUpdate['nameprofile'] == $userProfile['name'] && $profileUpdate['description'] == $userProfile['note'] && empty($_FILES['image']['name']) ){
           $messageUpdate = 'Bạn chưa thay đổi thông tin !';
         } else {
+              if (empty($_FILES['image']['name'])){
+                $_FILES['image']['name'] = $userProfile['image'];
+              }
               $namefile = 'image';
               $name = new UploadImageHellper($namefile);
               $name->upLoadFile();

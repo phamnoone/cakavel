@@ -1,5 +1,5 @@
 <?php 
-class UploadImageHellper extends Controller {
+class UploadImageHellper {
     public $namefile = '' ;
     public $messimg = '';
 
@@ -28,6 +28,5 @@ class UploadImageHellper extends Controller {
       
     }
 }
-
 
 ?>
