@@ -1,22 +1,6 @@
- <div class="container body">
-  <div class="main_container">
-    <div class="col-md-3 left_col">
-      <?php require_once "menu.php"; ?>
-    </div>
-    <!-- top navigation -->
-    <div class="top_nav">
-      <div class="nav_menu">
-        <?php require_once "nav_menu.php"; ?>
-      </div>
-    </div>
-    <!-- /top navigation -->
-
-    <!-- page content -->
-    <div class="right_col" role="main">
-      <!-- top tiles -->
-      <center>
-        <h3>XIN CHÀO <?php echo strtoupper($admin); ?></h3></center>
-
+<?php require_once "menu.php"; ?>
+<?php require_once "nav_menu.php"; ?>
+      <center><h3>XIN CHÀO <?php echo strtoupper($admin); ?></h3></center>
         <div id="content-wrapper">
 
           <div class="container-fluid">
@@ -76,21 +60,10 @@
                       </div>
                     </div>
                   </div>
-
                 </div>
                 <div class="col-lg-3"></div>
-
               </div>
             </div>
           </div>
         </div>
       </div>
-      <!-- /page content -->
-      <footer>
-        <div class="">
-          <center><h5>Dashboard Amin Manager Designed by Văn Phễn</h5></center>
-        </div>
-        <div class="clearfix"></div>
-      </footer>
-    </div>
-  </div>

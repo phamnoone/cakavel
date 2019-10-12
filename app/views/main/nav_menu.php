@@ -1,3 +1,5 @@
+    <div class="top_nav">
+      <div class="nav_menu">
         <nav>
           <div class="nav toggle">
             <a id="menu_toggle"><i class="fa fa-bars"></i></a>
@@ -16,7 +18,7 @@
                 <li><a href="logout"><i class="fa fa-sign-out pull-right"></i>Đăng xuất</a></li>
               </ul>
             </li>
-  
+
 
 
             <li role="presentation" class="dropdown">
@@ -85,3 +87,8 @@
             </li>
           </ul>
         </nav>
+      </div>
+    </div>
+    <!-- /top navigation -->
+    <!-- page content -->
+    <div class="right_col" role="main">
