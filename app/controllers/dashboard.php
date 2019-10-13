@@ -4,7 +4,6 @@ require 'UploadImageHellper.php';
 
 class Dashboard extends Zmanagers{
 
-
   function admin () {
     $messageUpdate = '';
     $messimg = '';
@@ -14,10 +13,10 @@ class Dashboard extends Zmanagers{
     if ($this->method === 'POST') {
         $profileUpdate = $this->data;
         if ($profileUpdate['nameprofile'] == $userProfile['name'] && $profileUpdate['description'] == $userProfile['note'] && empty($_FILES['image']['name']) ){
-          $messageUpdate = 'Bạn chưa thay đổi thông tin !';
+            $messageUpdate = 'Bạn chưa thay đổi thông tin !';
         } else {
               if (empty($_FILES['image']['name'])){
-                $_FILES['image']['name'] = $userProfile['image'];
+                  $_FILES['image']['name'] = $userProfile['image'];
               }
               $namefile = 'image';
               $name = new UploadImageHellper($namefile);
@@ -25,15 +24,12 @@ class Dashboard extends Zmanagers{
               $messimg = $name->messimg;
               if ($this->AdministratorsModel->updateInfor($profileUpdate['nameprofile'], $_FILES['image']['name'], $profileUpdate['description'], $_SESSION['username'])) {
                   $messageUpdate = '';
-                  header("Location: /dashboard/admin");
-              
+                  header("Location: /dashboard/admin");   
               } else {
                     $messageUpdate = 'Cập nhật không thành công !';
               }
         }
-
     }
-
     $this->view('template/managers/header');
     $this->view('main/managers',[
         'admin' => $_SESSION['username'],
@@ -44,7 +40,6 @@ class Dashboard extends Zmanagers{
         'messimg' =>$messimg
     ]);
     $this->view('template/managers/footer');
-
   }
 
   function logout() {

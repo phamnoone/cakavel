@@ -2,9 +2,7 @@
 <?php require_once "nav_menu.php"; ?>
 <center>
   <h3>XIN CHÀO <?php echo strtoupper($admin); ?></h3></center>
-
   <div id="content-wrapper">
-
     <div class="container-fluid">
       <div class="row">
         <div class="col-lg-6 col-md-6 col-sm-12" style="display: flex;">
@@ -24,7 +22,6 @@
               <div class="col-lg-8">
                 <div class="well">
                   <div id="myTabContent" class="tab-content">
-
                     <div id="menu2" class="tab-pane fade in active">
                       <div class="tab-pane in" id="home">
                         <form method="POST" enctype="multipart/form-data">
@@ -48,13 +45,11 @@
                     <div id="menu3" class="tab-pane fade">
                       <script>
                         function showImage(){
-
                           if (this.files && this.files[0]){
                             var obj = new  FileReader();
                             obj.onload = function(data){
                               var image = document.getElementById("image");
                               image.src = data.target.result;
-
                             }
                             obj.readAsDataURL(this.files[0]);
                           }
