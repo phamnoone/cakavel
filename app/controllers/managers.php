@@ -17,9 +17,9 @@ class Managers extends Zmanagers{
             $tokenAdmin = sha1(''.$userAdmin['username'].$userAdmin['password'].time());
             $_SESSION['token_admin'] = $tokenAdmin;
             $_SESSION['username'] = $userAdmin['username'];
+            $this->AdministratorsModel->insertToken($tokenAdmin,$userAdmin['username']);
             if (isset($_POST['checklogin'])) {
                 setcookie('token_admin',$tokenAdmin,time()+self::COST_TIME,'/');
-                $this->AdministratorsModel->insertToken($tokenAdmin,$userAdmin['username']);
             }
             header("Location: /dashboard/admin");
         } else {

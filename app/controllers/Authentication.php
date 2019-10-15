@@ -10,7 +10,6 @@ class Authentication extends Controller {
           } else {
                 $this->model('AdministratorsModel');
                 if ($this->AdministratorsModel->checkToken($_COOKIE[$this->tokenKey])) {
-                    session_start();
                     $_SESSION[$this->tokenKey] = ''.time();
                 } else {
                       $this->checkURL($this->redirectURL);

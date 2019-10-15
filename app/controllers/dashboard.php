@@ -6,16 +6,18 @@ class Dashboard extends Zmanagers{
 
     function admin () {
         $token = '';
-        if(empty($_SESSION[$this->tokenKey])){
-            $token = $_COOKIE[$this->tokenKey];
-        } else {
-              $token = $_SESSION[$this->tokenKey];
+        $token = $_SESSION[$this->tokenKey];
+        if(!empty($_COOKIE[$this->tokenKey])){
+            if($token != $_COOKIE[$this->tokenKey]){
+                $token = $_COOKIE[$this->tokenKey];
+          }
         }
         $messageUpdate = '';
         $messimg = '';
         $this->model('AdministratorsModel');
         $userProfile = $this->AdministratorsModel->infor($token);
         $_SESSION['urlimg'] = $userProfile['image'];
+        $_SESSION['nameadmin'] = $userProfile['username'];
         if ($this->method === 'POST') {
             $profileUpdate = $this->data;
             if ($profileUpdate['nameprofile'] == $userProfile['name'] && $profileUpdate['description'] == $userProfile['note'] && empty($_FILES['image']['name']) ){
@@ -46,13 +48,15 @@ class Dashboard extends Zmanagers{
             'messimg' =>$messimg
         ]);
         $this->view('template/managers/footer');
+
     }
 
     function logout() {
         $this->model('AdministratorsModel');
-        $this->AdministratorsModel->insertToken(NULL,$_SESSION['username']);
+        $this->AdministratorsModel->insertToken(NULL,$_SESSION['nameadmin']);
         unset($_SESSION['token_admin']);
         unset($_SESSION['username']);
+        setcookie($this->tokenKey,'',time()-3600,'/');
         header("Location: /managers/login");
     }
 
@@ -63,9 +67,9 @@ class Dashboard extends Zmanagers{
             $passUpdate = $this->data;
             $passold = sha1($passUpdate['passold']);
             $passnew = sha1($passUpdate['passconfirm']);
-            if ($this->AdministratorsModel->checkLogin($_SESSION['username'], $passold)){
+            if ($this->AdministratorsModel->checkLogin($_SESSION['nameadmin'], $passold)){
                 if ($passUpdate['passnew'] == $passUpdate['passconfirm']) {
-                    $this->AdministratorsModel->updatePass($passnew, $_SESSION['username']);
+                    $this->AdministratorsModel->updatePass($passnew,$_SESSION['nameadmin']);
                     $messageUpdate = 'Đổi mật khẩu thành công !';
                 } else {
                       $messageUpdate = 'Xác nhận mật khẩu không trùng khớp !';
@@ -76,7 +80,7 @@ class Dashboard extends Zmanagers{
         }
         $this->view('template/managers/header');
         $this->view('main/changepass',[
-            'admin' => $_SESSION['username'],
+            'admin' => $_SESSION['nameadmin'],
             'thongdiep' =>  $_SESSION['urlimg'],
             'mess' => $messageUpdate
         ]);
