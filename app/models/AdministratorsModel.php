@@ -36,10 +36,10 @@ class AdministratorsModel extends Model {
       }
   }
 
-  function infor($username){
-    $sql = "SELECT name,image,note FROM administrators WHERE `administrators`.`username` = :username";
+  function infor($token){
+    $sql = "SELECT username,name,image,note FROM administrators WHERE `administrators`.`token` = :token";
     $stmt = $this->db->prepare($sql);
-    $stmt->bindValue(':username',$username);
+    $stmt->bindValue(':token',$token);
     $stmt->execute();
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     return $result;

@@ -3,7 +3,7 @@ require 'Zmanagers.php';
 
 class Managers extends Zmanagers{
   const COST_TIME = 3600;
-
+  
   function login () {
     if (!empty($_SESSION['token_admin'])) {
         header("Location: /dashboard/admin");
@@ -18,7 +18,7 @@ class Managers extends Zmanagers{
             $_SESSION['token_admin'] = $tokenAdmin;
             $_SESSION['username'] = $userAdmin['username'];
             if (isset($_POST['checklogin'])) {
-                setcookie('token_admin',$tokenAdmin,time()+self::COST_TIME);
+                setcookie('token_admin',$tokenAdmin,time()+self::COST_TIME,'/');
                 $this->AdministratorsModel->insertToken($tokenAdmin,$userAdmin['username']);
             }
             header("Location: /dashboard/admin");

@@ -5,10 +5,16 @@ require 'UploadImageHellper.php';
 class Dashboard extends Zmanagers{
 
     function admin () {
+        $token = '';
+        if(empty($_SESSION[$this->tokenKey])){
+            $token = $_COOKIE[$this->tokenKey];
+        } else {
+              $token = $_SESSION[$this->tokenKey];
+        }
         $messageUpdate = '';
         $messimg = '';
         $this->model('AdministratorsModel');
-        $userProfile = $this->AdministratorsModel->infor($_SESSION['username']);
+        $userProfile = $this->AdministratorsModel->infor($token);
         $_SESSION['urlimg'] = $userProfile['image'];
         if ($this->method === 'POST') {
             $profileUpdate = $this->data;
@@ -22,7 +28,7 @@ class Dashboard extends Zmanagers{
                   $name = new UploadImageHellper($namefile);
                   $name->upLoadFile();
                   $messimg = $name->messimg;
-                  if ($this->AdministratorsModel->updateInfor($profileUpdate['nameprofile'], $_FILES['image']['name'], $profileUpdate['description'], $_SESSION['username'])) {
+                  if ($this->AdministratorsModel->updateInfor($profileUpdate['nameprofile'], $_FILES['image']['name'], $profileUpdate['description'], $userProfile['username'])) {
                       $messageUpdate = '';
                       header("Location: /dashboard/admin");   
                   } else {
@@ -32,7 +38,7 @@ class Dashboard extends Zmanagers{
         }
         $this->view('template/managers/header');
         $this->view('main/managers',[
-            'admin' => $_SESSION['username'],
+            'admin' => $userProfile['username'],
             'nameprofile' => $userProfile['name'],
             'thongdiep' => $userProfile['image'],
             'noteprofile' => $userProfile['note'],
