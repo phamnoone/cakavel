@@ -1,5 +1,6 @@
 <?php
-abstract class Controller {
+abstract class Controller
+{
     private $route = [];
     private $args = 0;
     private $params = [];
@@ -8,12 +9,13 @@ abstract class Controller {
     public $data = [];
 
 
-    function __construct() {
+    public function __construct()
+    {
         $this->route = explode('/', URI);
         $this->method = METHOD;
         if (!empty(QUERY)) {
             $keywords = preg_split("/[\s,=,&]+/", QUERY);
-            for($i=0;$i<sizeof($keywords);$i++){
+            for ($i=0;$i<sizeof($keywords);$i++) {
                 $arr[$keywords[$i]] = $keywords[++$i];
             }
             $this->query = (object)$arr;
@@ -21,53 +23,55 @@ abstract class Controller {
 
         $this->data = DATA;
         $this->args = count($this->route);
-        $this->router();
     }
 
 
-    private function router() {
+    public function router()
+    {
         $this->beforeRender();
-
-        if (class_exists($this->route[1])) {
-            if ($this->args >= 3) {
-                if (method_exists($this, $this->route[2])) {
-                    $this->uriCaller(2, 3);
-                } else {
-                    $this->uriCaller(0, 2);
-                }
+        if ($this->args == 2) {
+            if (method_exists($this, $this->route[1])) {
+                $this->uriCaller(1, 2);
             } else {
                 $this->uriCaller(0, 2);
             }
+        } elseif (!empty($this->route[2]) && method_exists($this, $this->route[2])) {
+            $this->uriCaller(2, 3);
+        } elseif (!empty($this->route[3]) &&method_exists($this, $this->route[3])) {
+            $this->uriCaller(3, 4);
         }
 
         $this->afterRender();
     }
 
 
-    private function uriCaller($method, $param) {
+    private function uriCaller($method, $param)
+    {
         for ($i = $param; $i < $this->args; $i++) {
             $this->params[$i] = $this->route[$i];
         }
-        if ($method == 0)
+        if ($method == 0) {
             call_user_func_array(array($this, 'index'), $this->params);
-        else
+        } else {
             call_user_func_array(array($this, $this->route[$method]), $this->params);
+        }
     }
 
-    function beforeRender(){
-
+    public function beforeRender()
+    {
     }
 
-    function index(){
-
+    public function index()
+    {
     }
 
-    function afterRender(){
-
+    public function afterRender()
+    {
     }
 
 
-    function model($path) {
+    public function model($path)
+    {
         $path = $path;
         $class = explode('/', $path);
         $class = $class[count($class)-1];
@@ -77,12 +81,16 @@ abstract class Controller {
     }
 
 
-    function view ($path, $data = []) {
-        if (is_array($data))
+    public function view($path, $data = [])
+    {
+        if (is_array($data)) {
             extract($data);
+        }
         require_once(ROOT . '/app/views/' . $path . '.php');
     }
 
+    public function redirect($url)
+    {
+        header('Location: ' . $url);
+    }
 }
-
-?>
