@@ -44,7 +44,7 @@ class AuthController extends ManagersController
             }
         }
 
-        $this->view('managers/login', [
+        $this->view('managers/auth/login', [
             'message' => $message
         ]);
     }

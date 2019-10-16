@@ -14,10 +14,9 @@ class DashboardController extends ManagersController
         $userProfile = $this->manager;
 
         if ($this->method === 'POST') {
-                //REQUIRE viết lại đoạn update
-            }
+            //REQUIRE viết lại đoạn update
         }
-        $this->view('managers/admin', [
+        $this->view('managers/dashboard/admin', [
             'manager' => $this->manager,
             'message' => $message,
         ]);
