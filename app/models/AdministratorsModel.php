@@ -12,6 +12,7 @@ class AdministratorsModel extends Model
 
         return !empty($user);
     }
+    
 
     public function updateToken($username, $token)
     {
@@ -21,6 +22,7 @@ class AdministratorsModel extends Model
         $stmt->bindValue(':token', $token);
         $stmt->execute();
     }
+
 
     public function checkAuthenWithToken($token)
     {
@@ -33,6 +35,7 @@ class AdministratorsModel extends Model
         return !empty($result);
     }
 
+
     public function getWithToken($token)
     {
         $sql = "SELECT * FROM administrators WHERE `administrators`.`token` = :token";
@@ -43,7 +46,8 @@ class AdministratorsModel extends Model
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function updatePass($password, $username)
+
+    public function updatePassword($username, $password)
     {
         $sql = "UPDATE administrators SET `password` = :password WHERE `administrators`.`username` = :username";
         $stmt = $this->db->prepare($sql);
@@ -53,13 +57,14 @@ class AdministratorsModel extends Model
         return $stmt->execute();
     }
 
-    public function updateInfor($name, $image, $note, $username)
+
+    public function updateInfor($username, $info)
     {
         $sql = "UPDATE administrators SET `name` = :name,`image` = :image ,`note` = :note WHERE `administrators`.`username` = :username";
         $stmt = $this->db->prepare($sql);
-        $stmt->bindValue(':name', $name);
-        $stmt->bindValue(':image', $image);
-        $stmt->bindValue(':note', $note);
+        $stmt->bindValue(':name', $info['name']);
+        $stmt->bindValue(':image', $info['image']);
+        $stmt->bindValue(':note', $info['note']);
         $stmt->bindValue(':username', $username);
 
         return $stmt->execute();
