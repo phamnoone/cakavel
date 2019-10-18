@@ -2,7 +2,9 @@
 //  DB config
 $this->config['database'] = array(
     'hostname' => 'localhost',
-    'username' => 'root',
-    'password' => '',
-    'dbname' => 'test'
+    'username' => 'cakavel',
+    'password' => 'c4k4ve1',
+    'dbname' => 'csetlu'
 );
+
+?>
