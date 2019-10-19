@@ -13,7 +13,7 @@ class DashboardController extends ManagersController
 
         if ($this->method === 'POST') {
             $userUpdate = $this->data;
-            if ($userUpdate['nameprofile'] == $userProfile['name'] && $userUpdate['description'] == $userProfile['note'] && empty($_FILES['image']['name']) ){
+            if ($userUpdate['nameprofile'] == $userProfile['name'] && $userUpdate['description'] == $userProfile['note'] && empty($_FILES['image']['name']) ) {
                 $message['update'] = 'Bạn chưa thay đổi thông tin !';
             } else {
                     if (empty($_FILES['image']['name'])) {
@@ -49,7 +49,7 @@ class DashboardController extends ManagersController
                 'username' => $userProfile['username'],
                 'password' => sha1($passUpdate['passold'])
             ];
-            if ($this->AdministratorsModel->login($accout)){
+            if ($this->AdministratorsModel->login($accout)) {
                 if ($passUpdate['passnew'] == $passUpdate['passconfirm']) {
                     $this->AdministratorsModel->updatePassword($userProfile['username'],sha1($passUpdate['passconfirm']));
                     $message = 'Đổi mật khẩu thành công !';
