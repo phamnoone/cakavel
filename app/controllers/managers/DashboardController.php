@@ -11,12 +11,6 @@ class DashboardController extends ManagersController
         ];
 
         $userProfile = $this->manager;
-        $info = [
-            'name' => $userProfile['name'],
-            'image' => $userProfile['image'],
-            'note' => $userProfile['note'],
-            'username' => $userProfile['username']
-        ];
 
         if ($this->method === 'POST') {
             $userprofileUpdate = $this->data;
@@ -26,17 +20,14 @@ class DashboardController extends ManagersController
                   if (empty($_FILES['image']['name'])){
                       $_FILES['image']['name'] = $userProfile['image'];
                   }
-                  $info = [
-                      'name' => $userprofileUpdate['nameprofile'],
-                      'image' => $_FILES['image']['name'],
-                      'note' => $userprofileUpdate['description'],
-                      'username' => $userProfile['username']
-                  ];
+                  $userProfile['name'] = $userprofileUpdate['nameprofile'];
+                  $userProfile['note'] = $userprofileUpdate['description'];
+                  $userProfile['image'] = $_FILES['image']['name'];
                   $name = new UploadImgHelper('image');
                   $name->upLoadFile();
                   $message['update'] = $name->messimg;
-                  if ($this->AdministratorsModel->updateInfor($userProfile['username'], $info)) {
-                      $message['update'] = '';
+                  if ($this->AdministratorsModel->updateInfor($userProfile)) {
+                      $message['update'] = 'Cập nhật thành công !';
                   } else {
                         $message['update'] = 'Cập nhật không thành công !';
                     }
@@ -44,22 +35,22 @@ class DashboardController extends ManagersController
         }
 
         $this->view('managers/dashboard/admin', [
-            'manager' => $info,
+            'manager' => $userProfile,
             'message' => $message
         ]);
     }
 
-    public function changePassword()
+    public function password()
     {
         $message = '';
         $userProfile = $this->manager;
         if ($this->method === 'POST') {
             $passUpdate = $this->data;
-            $pass = [
+            $accout = [
                 'username' => $userProfile['username'],
                 'password' => sha1($passUpdate['passold'])
             ];
-            if ($this->AdministratorsModel->login($pass)){
+            if ($this->AdministratorsModel->login($accout)){
                 if ($passUpdate['passnew'] == $passUpdate['passconfirm']) {
                     $this->AdministratorsModel->updatePassword($userProfile['username'],sha1($passUpdate['passconfirm']));
                     $message = 'Đổi mật khẩu thành công !';
@@ -73,7 +64,7 @@ class DashboardController extends ManagersController
 
         $this->view('managers/dashboard/changepass', [
             'manager' => $userProfile,
-            'mess' => $message
+            'message' => $message
         ]);
     }
 }

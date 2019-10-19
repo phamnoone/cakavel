@@ -26,7 +26,7 @@
                     <div class="tab-pane in" id="home">
                       <form method="POST" action="admin" enctype="multipart/form-data">
                         <label>Tài khoản</label>
-                        <input style="margin:10px 0px 10px 20px;" name="" disabled type="text" value="<?php echo $manager['username'] ?>" class="input-xlarge">
+                        <input style="margin:10px 0px 10px 20px;"  disabled type="text" value="<?php echo $manager['username'] ?>" class="input-xlarge">
                         <br>
                         <label>Tên</label>
                         <input style="margin-left: 58px;margin-bottom: 10px;" name="nameprofile" required type="text" value="<?php echo $manager['name'] ?>" class="input-xlarge">

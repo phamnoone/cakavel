@@ -69,7 +69,7 @@
                 </a>
                 <ul class="dropdown-menu dropdown-usermenu pull-right">
                   <li><a href="admin"> Thông tin cá nhân</a></li>
-                  <li><a href="changePassword"> Đổi mật Khẩu</a></li>
+                  <li><a href="password"> Đổi mật Khẩu</a></li>
                   <li><a href="/managers/auth/logout"><i class="fa fa-sign-out pull-right"></i>Đăng xuất</a></li>
                 </ul>
               </li>

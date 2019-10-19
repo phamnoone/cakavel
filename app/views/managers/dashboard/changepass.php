@@ -38,7 +38,7 @@
                       </div>
                       <br>
                       <center>
-                        <h2 style="color: red;"><?php echo $mess; ?></h2>
+                        <h2 style="color: red;"><?php echo $message; ?></h2>
                       </center>
                       <br>
                       <input type="submit" class="btn btn-primary" style="margin-top: 10px;" value="Đổi mật khẩu" />
