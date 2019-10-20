@@ -24,9 +24,9 @@
                 <div id="myTabContent" class="tab-content">
                   <div id="menu2" class="tab-pane fade in active">
                     <div class="tab-pane in" id="home">
-                      <form method="POST" enctype="multipart/form-data">
+                      <form method="POST" action="admin" enctype="multipart/form-data">
                         <label>Tài khoản</label>
-                        <input style="margin:10px 0px 10px 20px;" name="" disabled type="text" value="<?php echo $manager['username'] ?>" class="input-xlarge">
+                        <input style="margin:10px 0px 10px 20px;"  disabled type="text" value="<?php echo $manager['username'] ?>" class="input-xlarge">
                         <br>
                         <label>Tên</label>
                         <input style="margin-left: 58px;margin-bottom: 10px;" name="nameprofile" required type="text" value="<?php echo $manager['name'] ?>" class="input-xlarge">
@@ -66,11 +66,10 @@
               <div class="d-flex justify-content-center h-100">
                 <div class="image_outer_container thung">
                   <div class="image_inner_container">
-                    <img src="<?php echo '../public/images/'. $manager['image']; ?>" id="image">
+                    <img src="<?php echo '/public/images/'. $manager['image']; ?>" id="image">
                   </div>
                 </div>
               </div>
-              <h2 style="text-align: center;color: red;"><?php echo $message['image']; ?></h2>
             </div>
           </div>
         </div>

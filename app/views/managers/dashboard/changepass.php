@@ -1,11 +1,11 @@
 <center>
-  <h3>XIN CHÀO <?php echo strtoupper($admin); ?></h3>
+  <h3>XIN CHÀO <?php echo strtoupper($manager['username']); ?></h3>
 </center>
 <div id="content-wrapper">
   <div class="container-fluid">
     <div class="row">
       <div class="col-lg-6 col-md-6 col-sm-12" style="display: flex;">
-        <h2><?php echo strtoupper($admin); ?> Profile</h2>
+        <h2><?php echo strtoupper($manager['username']); ?> Profile</h2>
       </div>
     </div>
     <hr>
@@ -22,7 +22,7 @@
               <div class="well">
                 <div id="myTabContent" class="tab-content">
                   <div id="menu3" class="tab-pane fade in active">
-                    <form method="POST">
+                    <form method="POST" action="changePassword">
                       <label>Mật khẩu cũ</label>
                       <input id="myInput" style="margin:10px 0px 10px 25px;" name="passold" type="password" value="" required class="input-xlarge myInput">
                       <br>
@@ -38,7 +38,7 @@
                       </div>
                       <br>
                       <center>
-                        <h2 style="color: red;"><?php echo $mess; ?></h2>
+                        <h2 style="color: red;"><?php echo $message; ?></h2>
                       </center>
                       <br>
                       <input type="submit" class="btn btn-primary" style="margin-top: 10px;" value="Đổi mật khẩu" />

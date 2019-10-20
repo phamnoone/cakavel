@@ -58,14 +58,14 @@ class AdministratorsModel extends Model
     }
 
 
-    public function updateInfor($username, $info)
+    public function updateInfor($info)
     {
         $sql = "UPDATE administrators SET `name` = :name,`image` = :image ,`note` = :note WHERE `administrators`.`username` = :username";
         $stmt = $this->db->prepare($sql);
         $stmt->bindValue(':name', $info['name']);
         $stmt->bindValue(':image', $info['image']);
         $stmt->bindValue(':note', $info['note']);
-        $stmt->bindValue(':username', $username);
+        $stmt->bindValue(':username', $info['username']);
 
         return $stmt->execute();
     }
