@@ -6,17 +6,9 @@ class AuthController extends ManagersController
     const COST_TIME = 3600;
 
 
-    public function __contruct()
-    {
-        parent::__contruct();
-        $this->isLoginPage = true;
-    }
-
-
     public function beforeRender()
     {
         $this->model('AdministratorsModel');
-
         $this->view('template/login/header');
     }
 
@@ -51,7 +43,6 @@ class AuthController extends ManagersController
 
     public function logout()
     {
-        $this->AdministratorsModel->updateToken($this->manager['username'], null);
         unset($_SESSION[self::TOKEN_KEY]);
         $this->redirect("/managers/auth/login");
     }
