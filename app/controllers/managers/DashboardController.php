@@ -4,6 +4,9 @@ require './app/helpers/UploadImgHelper.php';
 
 class DashboardController extends ManagersController
 {
+    const CURRENT_PAGE = 1;
+    const LIMIT = 3;
+
     public function admin()
     {
         $message = [
@@ -65,5 +68,42 @@ class DashboardController extends ManagersController
             'manager' => $userProfile,
             'message' => $message
         ]);
+    }
+
+    public function teachers()
+    {
+        $current_page;
+        $resultList = null;
+        $userProfile = $this->manager;
+        $this->model('TeachersModel');
+
+        if (empty($_GET['page'])) {
+            $current_page = self::CURRENT_PAGE;
+        } else {
+            $current_page = (int)$_GET['page'];
+        }
+        $total_records = $this->TeachersModel->totalPage();
+        $total_page = (int)ceil($total_records["totals"]/self::LIMIT);
+        if ($current_page > $total_page){
+            $current_page = $total_page;
+        }
+        else if ($current_page < 1){
+            $current_page = 1;
+        }
+
+        $start = ($current_page - 1) * self::LIMIT;
+        $resultList = $this->TeachersModel->listInfor($start,self::LIMIT);
+
+        $this->view('managers/dashboard/managerteachers', [
+            'manager' => $userProfile,
+            'resultList' => $resultList,
+            'current_page' => $current_page,
+            'total_page' => $total_page
+        ]);
+    }
+
+    public function addTeacher()
+    {
+        $this->view('managers/dashboard/addteachers');
     }
 }

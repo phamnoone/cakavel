@@ -42,8 +42,8 @@
             <div class="menu_section">
               <h3>DashBoard</h3>
               <ul class="nav side-menu">
-                <li><a href="/dashboard/admin"><i class="fa fa-home"></i> Home </a></li>
-                <li><a><i class="fa fa-edit"></i> Quản lí giảng viên </a></li>
+                <li><a href="/managers/dashboard/admin"><i class="fa fa-home"></i> Home </a></li>
+                <li><a href="/managers/dashboard/teachers"><i class="fa fa-edit"></i> Quản lí giảng viên </a></li>
                 <li><a><i class="fa fa-desktop"></i> Quản lí sinh viên </a></li>
                 <li><a><i class="fa fa-table"></i> Quản lí môn học </a></li>
                 <li><a><i class="fa fa-bar-chart-o"></i> Quản lí lớp học </a></li>
