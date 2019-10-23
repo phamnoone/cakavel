@@ -5,7 +5,7 @@ abstract class Controller
     private $args = 0;
     private $params = [];
     public $method;
-    public $query = [];
+    public $query;
     public $data = [];
 
 
@@ -14,11 +14,8 @@ abstract class Controller
         $this->route = explode('/', URI);
         $this->method = METHOD;
         if (!empty(QUERY)) {
-            $keywords = preg_split("/[\s,=,&]+/", QUERY);
-            for ($i=0;$i<sizeof($keywords);$i++) {
-                $arr[$keywords[$i]] = $keywords[++$i];
-            }
-            $this->query = (object)$arr;
+            $this->query = preg_split("/[\s,=,&]+/", QUERY);
+            $this->route = explode('/', explode('?', URI)[0]);
         }
 
         $this->data = DATA;
