@@ -104,6 +104,43 @@ class DashboardController extends ManagersController
 
     public function addTeacher()
     {
-        $this->view('managers/dashboard/addteachers');
+        $message = '';
+        if ($this->method === 'POST') {
+            if (empty($_FILES['image']['name'])) {
+                $_FILES['image']['name'] = '';
+            }
+            $inforteacher = $this->data;     
+            $this->model('TeachersModel');
+            if ($this->TeachersModel->checkUser($inforteacher['user'])){
+                $uploadImage = new UploadImgHelper('image');
+                $uploadImage->upLoadFile();
+                $message = $uploadImage->messimg;
+                if(strlen($message)==0){
+                    $this->TeachersModel->addUser($inforteacher,$_FILES['image']['name']);
+                }
+            } else {
+                $message = 'Tài khoản đã tồn tại !';
+            }
+        }
+
+        $this->view('managers/dashboard/addteachers',[
+            'message' => $message
+        ]);
+    }
+
+    public function deleteTeacher()
+    {
+        $this->model('TeachersModel');
+        var_dump($_GET['id']);
+        $this->TeachersModel->deleteUser($_GET['id']);
+    }
+
+    public function editTeacher()
+    {
+        $message = '';
+
+        $this->view('managers/dashboard/editteachers',[
+            'message' => $message
+        ]);
     }
 }

@@ -63,8 +63,8 @@
         <td><?php  echo $resultList[$i]['phone'] ?></td>
         <td><?php  echo $resultList[$i]['description'] ?></td>
         <td style="display: flex;">
-          <a type="button"  class="btn btn-xs btn-info btnsua" href=""  >Sửa</a>
-          <a type="button"  class="btn btn-xs btn-info btnsua" href=""  >Xóa</a>
+          <a type="button"  class="btn btn-xs btn-info btnsua" href="/managers/dashboard/editTeacher?id=<?php echo $resultList[$i]['id'] ?>"  >Sửa</a>
+          <a type="button"  class="btn btn-xs btn-info btnsua" href="/managers/dashboard/deleteTeacher?id=<?php echo $resultList[$i]['id'] ?>"  >Xóa</a>
         </td>
       </tr>
     <?php 
