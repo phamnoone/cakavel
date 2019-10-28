@@ -72,10 +72,11 @@ class DashboardController extends ManagersController
 
     public function teachers()
     {
+        $this->model('TeachersModel');
         $current_page;
         $resultList = null;
         $userProfile = $this->manager;
-        $this->model('TeachersModel');
+
 
         if (empty($_GET['page'])) {
             $current_page = self::CURRENT_PAGE;
@@ -93,6 +94,14 @@ class DashboardController extends ManagersController
 
         $start = ($current_page - 1) * self::LIMIT;
         $resultList = $this->TeachersModel->listInfor($start,self::LIMIT);
+        if ($this->method === "POST") {
+            $infoSearch = $this->data;
+            $resultList = $this->TeachersModel->search($infoSearch);
+            $total_page =0;
+            if ($resultList[0] == false) {
+                $resultList = null;
+            }
+        }
 
         $this->view('managers/dashboard/managerteachers', [
             'manager' => $userProfile,
@@ -111,12 +120,18 @@ class DashboardController extends ManagersController
             }
             $inforteacher = $this->data;     
             $this->model('TeachersModel');
+
             if ($this->TeachersModel->checkUser($inforteacher['user'])){
-                $uploadImage = new UploadImgHelper('image');
-                $uploadImage->upLoadFile();
-                $message = $uploadImage->messimg;
+                if (empty($_FILES['image']['name'])) {
+                    $_FILES['image']['name'] = '';
+                } else {
+                    $uploadImage = new UploadImgHelper('image');
+                    $uploadImage->upLoadFile();
+                    $message = $uploadImage->messimg;
+                }
                 if(strlen($message)==0){
                     $this->TeachersModel->addUser($inforteacher,$_FILES['image']['name']);
+                    echo("<script>location.href = '/managers/dashboard/teachers';</script>");
                 }
             } else {
                 $message = 'Tài khoản đã tồn tại !';
@@ -131,16 +146,47 @@ class DashboardController extends ManagersController
     public function deleteTeacher()
     {
         $this->model('TeachersModel');
-        var_dump($_GET['id']);
         $this->TeachersModel->deleteUser($_GET['id']);
+        echo("<script>location.href = '/managers/dashboard/teachers';</script>");
     }
 
     public function editTeacher()
     {
         $message = '';
+        $this->model('TeachersModel');
+        $info = $this->TeachersModel->getWithUser($_GET['id']);
+
+        if (empty($info['image'])) {
+            $info['image'] = 'user.png';
+        }
+        if ($this->method === 'POST') {
+            $infoUpdate = $this->data;
+            if ($infoUpdate['name'] == $info['name'] && $infoUpdate['email'] == $info['email'] && $infoUpdate['description'] == $info['description'] && $infoUpdate['address'] == $info['address'] && $infoUpdate['phone'] == $info['phone'] && empty($_FILES['image']['name']) ) {
+                $message = 'Bạn chưa thay đổi thông tin !';
+            } else {
+                if (empty($_FILES['image']['name'])) {
+                    $_FILES['image']['name'] = $info['image'];
+                }
+                $info['name'] = $infoUpdate['name'];
+                $info['email'] = $infoUpdate['email'];
+                $info['address'] = $infoUpdate['address'];
+                $info['phone'] = $infoUpdate['phone'];
+                $info['image'] = $_FILES['image']['name'];
+                $info['description'] = $infoUpdate['description'];
+                $uploadImage = new UploadImgHelper('image');
+                $uploadImage->upLoadFile();
+                $message = $uploadImage->messimg;
+                if ($this->TeachersModel->updateInfor($info)) {
+                    $message = 'Cập nhật thành công !';
+                } else {
+                    $message = 'Cập nhật không thành công !';
+                }
+            }
+        }
 
         $this->view('managers/dashboard/editteachers',[
-            'message' => $message
+            'message' => $message,
+            'info' => $info
         ]);
     }
 }
