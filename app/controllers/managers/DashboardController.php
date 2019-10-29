@@ -4,7 +4,6 @@ require './app/helpers/UploadImgHelper.php';
 
 class DashboardController extends ManagersController
 {
-
     public function admin()
     {
         $message = [
@@ -67,5 +66,4 @@ class DashboardController extends ManagersController
             'message' => $message
         ]);
     }
-
 }
