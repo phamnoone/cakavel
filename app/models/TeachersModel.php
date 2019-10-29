@@ -1,7 +1,7 @@
 <?php 
 class TeachersModel extends Model
 {
-	public function listInfor($start,$limits)
+	public function getPages($start,$limits)
     {
         $listInfor;
         $sql = "SELECT id,username,name,image,email,address,phone,description FROM teachers LIMIT :start, :limits";

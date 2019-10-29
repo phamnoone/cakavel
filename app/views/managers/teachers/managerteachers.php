@@ -7,7 +7,7 @@
       <div class="col-lg-6 col-md-6 col-sm-12" style="display: flex;">
         <h2>QUẢN LÍ TÀI KHOẢN GIÁO VIÊN</h2>
       </div>
-      <form action="teachers" method="POST">
+      <form action="list" method="POST">
         <div class="col-lg-6 col-md-6 col-sm-12" style="display: flex;">
           <div class="form-group" style="margin-left: 26%;margin-right: 10px;">
             <select class="form-control" name="selected">
@@ -28,7 +28,7 @@
         <a href="">Danh sách quản lí giảng viên</a>
       </li>
       <li class="breadcrumb-item">
-        <a style="margin-left: 10px;height: 100%;"  href="addTeacher" class="btn btn-primary  btnadd">Thêm mới</a>
+        <a style="margin-left: 10px;height: 100%;"  href="" class="btn btn-primary  btnadd">Thêm mới</a>
 
       </li>
 
@@ -65,8 +65,8 @@
               <td><?php  echo $resultList[$i]['phone']; ?></td>
               <td><?php  echo $resultList[$i]['description']; ?></td>
               <td style="display: flex;">
-                <a type="button"  class="btn btn-xs btn-info btnsua" href="/managers/dashboard/editTeacher?id=<?php echo $resultList[$i]['id']; ?>"  >Sửa</a>
-                <a type="button"  class="btn btn-xs btn-info btnsua" href="/managers/dashboard/deleteTeacher?id=<?php echo $resultList[$i]['id']; ?>"  >Xóa</a>
+                <a type="button"  class="btn btn-xs btn-info btnsua" href="/managers/editTeacher?id=<?php echo $resultList[$i]['id']; ?>"  >Sửa</a>
+                <a type="button"  class="btn btn-xs btn-info btnsua" href="/managers/deleteTeacher?id=<?php echo $resultList[$i]['id']; ?>"  >Xóa</a>
               </td>
             </tr>
             <?php 
@@ -78,13 +78,13 @@
     <ul class="pull-right pagination justify-content-end">
       <?php 
       if ($current_page > 1 && $total_page > 1){
-        echo '<li class="page-item"><a class="page-link" href="/managers/dashboard/teachers?page='.($current_page-1).'">Prev</a></li>';
+        echo '<li class="page-item"><a class="page-link" href="/managers/teachers/list?page='.($current_page-1).'">Prev</a></li>';
       }
       for ($i = 1; $i <= $total_page; $i++){
-        echo '<li class="page-item"><a class="page-link" href="/managers/dashboard/teachers?page='.$i.'">'.$i.'</a></li>';
+        echo '<li class="page-item"><a class="page-link" href="/managers/teachers/list?page='.$i.'">'.$i.'</a></li>';
       }
       if ($current_page < $total_page && $total_page > 1){
-        echo '<li class="page-item"><a class="page-link" href="/managers/dashboard/teachers?page='.($current_page+1).'">Next</a></li>';
+        echo '<li class="page-item"><a class="page-link" href="/managers/teachers/list?page='.($current_page+1).'">Next</a></li>';
       }
       ?>
     </ul>
