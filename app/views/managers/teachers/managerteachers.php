@@ -1,5 +1,5 @@
 <center>
-  <h3>XIN CHÀO <?php echo strtoupper($manager['username']); ?></h3>
+  <h3>XIN CHÀO <?php echo strtoupper($profileAdmin['username']); ?></h3>
 </center>
 <div id="content-wrapper">
   <div class="container-fluid">
@@ -77,14 +77,14 @@
     </table>
     <ul class="pull-right pagination justify-content-end">
       <?php 
-      if ($current_page > 1 && $total_page > 1){
-        echo '<li class="page-item"><a class="page-link" href="/managers/teachers/list?page='.($current_page-1).'">Prev</a></li>';
+      if ($currentPage > 1 && $totalPage > 1){
+        echo '<li class="page-item"><a class="page-link" href="/managers/teachers/list?page='.($currentPage-1).'">Prev</a></li>';
       }
-      for ($i = 1; $i <= $total_page; $i++){
+      for ($i = 1; $i <= $totalPage; $i++){
         echo '<li class="page-item"><a class="page-link" href="/managers/teachers/list?page='.$i.'">'.$i.'</a></li>';
       }
-      if ($current_page < $total_page && $total_page > 1){
-        echo '<li class="page-item"><a class="page-link" href="/managers/teachers/list?page='.($current_page+1).'">Next</a></li>';
+      if ($currentPage < $totalPage && $totalPage > 1){
+        echo '<li class="page-item"><a class="page-link" href="/managers/teachers/list?page='.($currentPage+1).'">Next</a></li>';
       }
       ?>
     </ul>

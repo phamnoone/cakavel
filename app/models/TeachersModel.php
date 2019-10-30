@@ -36,11 +36,11 @@ class TeachersModel extends Model
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function checkUser($username)
+    public function checkUser($userName)
     {
         $sql = "SELECT id FROM teachers WHERE `teachers`.`username` = :username";
         $stmt = $this->db->prepare($sql);
-        $stmt->bindValue(':username', $username);
+        $stmt->bindValue(':username', $userName);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -86,11 +86,11 @@ class TeachersModel extends Model
         return $stmt->execute();
     }
 
-    public function search($infoSearch)
+    public function search($dataSearch)
     {
-        $sql = "SELECT id, username, name, image, email, address, phone, description FROM teachers WHERE ".$infoSearch['selected']." = :search ";
+        $sql = "SELECT id, username, name, image, email, address, phone, description FROM teachers WHERE ".$dataSearch['selected']." = :search ";
         $stmt = $this->db->prepare($sql);
-        $stmt->bindValue(':search', $infoSearch['search']);
+        $stmt->bindValue(':search', $dataSearch['search']);
         $stmt->execute();
         $info[] = $stmt->fetch(PDO::FETCH_ASSOC);
         
