@@ -24,9 +24,9 @@ abstract class Controller
                     $value[] = $v;
                 }
             }
-            $this->query = new stdClass();
+            $this->query = [];
             foreach ($key as $k => $v) {
-                $this->query->$v = empty($value[$k]) ? "" : $value[$k];
+                $this->query[$v] = empty($value[$k]) ? "" : $value[$k];
             }
             $this->route = explode('/', explode('?', URI)[0]);
         }
