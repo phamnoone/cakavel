@@ -14,7 +14,20 @@ abstract class Controller
         $this->route = explode('/', URI);
         $this->method = METHOD;
         if (!empty(QUERY)) {
-            $this->query = preg_split("/[\s,=,&]+/", QUERY);
+            $query = preg_split("/[\s,=,&]+/", QUERY);
+            $key = array();
+            $value = array();
+            foreach ($query as $k => $v) {
+                if ($k % 2 == 0) {
+                    $key[] = $v;
+                } else {
+                    $value[] = $v;
+                }
+            }
+            $this->query = new stdClass();
+            foreach ($key as $k => $v) {
+                $this->query->$v = empty($value[$k]) ? "" : $value[$k];
+            }
             $this->route = explode('/', explode('?', URI)[0]);
         }
 
