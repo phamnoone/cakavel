@@ -5,10 +5,11 @@ class ManagersController extends Controller
     const REDRIECT_URL = '/managers/auth/login';
 
     public $manager = null;
-
+ 
     public function beforeRender()
     {
         $this->model('AdministratorsModel');
+        $this->model('TeachersModel');
         if (empty($_SESSION[self::TOKEN_KEY]) || !$this->AdministratorsModel->checkAuthenWithToken($_SESSION[self::TOKEN_KEY])) {
             $this->redirect(self::REDRIECT_URL);
         }

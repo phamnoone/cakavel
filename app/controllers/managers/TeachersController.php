@@ -6,22 +6,22 @@ class TeachersController extends ManagersController
 {
 	public function list()
     {
-        $this->model('TeachersModel');
         $profileAdmin = $this->manager;
         $getData = $this->query;
         $page = [
             'current' => 0,
             'total' => 0,
-            'limit' => 10
+            'limit' => 10,
+            'start' => 0
         ];
         $resultList = null;
         $page['current'] = (empty($getData['page'])) ? 1 : (int)$getData['page'];
         $page['total'] = $this->TeachersModel->totalPage();
         $page['total'] = (int)ceil($page['total']["totals"]/$page['limit']);
 
-        if( $page['current'] >= 0 && $page['current'] <= $page['total']) {
-            $start = ($page['current'] - 1) * $page['limit'];
-            $resultList = $this->TeachersModel->getPages($start,$page['limit']);
+        if ($page['current'] >= 0 && $page['current'] <= $page['total']) {
+            $page['start'] = ($page['current'] - 1) * $page['limit'];
+            $resultList = $this->TeachersModel->getPages($page);
             if ($this->method === "POST") {
                 $dataSearch = $this->data;
                 $resultList = $this->TeachersModel->search($dataSearch);
