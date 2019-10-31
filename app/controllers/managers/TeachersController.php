@@ -4,47 +4,38 @@ require './app/helpers/UploadImgHelper.php';
 
 class TeachersController extends ManagersController
 {
-    const currentPage = 1;
-    const LIMIT = 3;
-
 	public function list()
     {
         $this->model('TeachersModel');
-        $currentPage;
-        $resultList = null;
         $profileAdmin = $this->manager;
         $getData = $this->query;
+        $page = [
+            'current' => 0,
+            'total' => 0,
+            'limit' => 10
+        ];
+        $resultList = null;
+        $page['current'] = (empty($getData['page'])) ? 1 : (int)$getData['page'];
+        $page['total'] = $this->TeachersModel->totalPage();
+        $page['total'] = (int)ceil($page['total']["totals"]/$page['limit']);
 
-        if (empty($getData['page'])) {
-            $currentPage = self::currentPage;
-        } else {
-            $currentPage = (int)$getData['page'];
-        }
-        $totalRecords = $this->TeachersModel->totalPage();
-        $totalPage = (int)ceil($totalRecords["totals"]/self::LIMIT);
-        if ($currentPage > $totalPage){
-            $currentPage = $totalPage;
-        }
-        else if ($currentPage < 1){
-            $currentPage = 1;
-        }
-
-        $start = ($currentPage - 1) * self::LIMIT; 
-        $resultList = $this->TeachersModel->getPages($start,self::LIMIT);
-        if ($this->method === "POST") {
-            $dataSearch = $this->data;
-            $resultList = $this->TeachersModel->search($dataSearch);
-            $totalPage =0;
-            if ($resultList[0] == false) {
-                $resultList = null;
+        if( $page['current'] >= 0 && $page['current'] <= $page['total']) {
+            $start = ($page['current'] - 1) * $page['limit'];
+            $resultList = $this->TeachersModel->getPages($start,$page['limit']);
+            if ($this->method === "POST") {
+                $dataSearch = $this->data;
+                $resultList = $this->TeachersModel->search($dataSearch);
+                $page['total'] =1;
+                if ($resultList[0] == false) {
+                    $resultList = null;
+                }
             }
         }
 
-        $this->view('managers/teachers/managerteachers', [
+        $this->view('managers/teachers/list', [
             'profileAdmin' => $profileAdmin,
             'resultList' => $resultList,
-            'currentPage' => $currentPage,
-            'totalPage' => $totalPage
-        ]);
+            'page' => $page
+        ]);            
     }
 }

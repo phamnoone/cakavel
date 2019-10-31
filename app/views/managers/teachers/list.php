@@ -51,9 +51,8 @@
       </thead>
       <tbody>
         <?php
-        if(!empty($resultList)){
+        if(!empty($resultList) && $page['current']>=0 && $page['current'] <= $page['total']){
           for ($i=0; $i < count($resultList) ; $i++) {
-
             ?>
             <tr role="row" class="odd">
               <td><?php  echo $i+1; ?></td>
@@ -71,20 +70,24 @@
             </tr>
             <?php 
           }
-        }
+        }  else {
+            echo '<tr role="row" class="odd"><td style="color: red;"> NO SOUND DATA </td></tr>';
+          }
         ?>
       </tbody>
     </table>
     <ul class="pull-right pagination justify-content-end">
-      <?php 
-      if ($currentPage > 1 && $totalPage > 1){
-        echo '<li class="page-item"><a class="page-link" href="/managers/teachers/list?page='.($currentPage-1).'">Prev</a></li>';
-      }
-      for ($i = 1; $i <= $totalPage; $i++){
-        echo '<li class="page-item"><a class="page-link" href="/managers/teachers/list?page='.$i.'">'.$i.'</a></li>';
-      }
-      if ($currentPage < $totalPage && $totalPage > 1){
-        echo '<li class="page-item"><a class="page-link" href="/managers/teachers/list?page='.($currentPage+1).'">Next</a></li>';
+      <?php
+      if ($page['current'] >= 0 && $page['current'] <= $page['total']) {
+        if ($page['current'] > 1 && $page['total'] > 1){
+            echo '<li class="page-item"><a class="page-link" href="/managers/teachers/list?page='.($page['current']-1).'">Prev</a></li>';
+        }
+        for ($i = 1; $i <= $page['total']; $i++){
+            echo '<li class="page-item"><a class="page-link" href="/managers/teachers/list?page='.$i.'">'.$i.'</a></li>';
+        }
+        if ($page['current'] < $page['total'] && $page['total'] > 1){
+          echo '<li class="page-item"><a class="page-link" href="/managers/teachers/list?page='.($page['current']+1).'">Next</a></li>';
+        }
       }
       ?>
     </ul>
