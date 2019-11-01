@@ -4,6 +4,12 @@ require './app/helpers/UploadImgHelper.php';
 
 class TeachersController extends ManagersController
 {
+    public function beforeRender()
+    {
+        parent::beforeRender();
+        $this->model('TeachersModel');
+    }
+
 	public function list()
     {
         $profileAdmin = $this->manager;
